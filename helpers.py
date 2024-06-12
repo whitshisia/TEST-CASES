@@ -98,40 +98,7 @@ def total_overdue_students(cls):
     today = date.today()
     return len([student for student in cls.student_db if any(book['due_date'] < today for book in student.borrowed_books)])
 
-# Example usage
-# if __name__ == "__main__":
-#     student1 = Student(1, "Alice", "10th")
-#     student2 = Student(2, "Bob", "12th")
 
-#     student1.add_student()
-#     student2.add_student()
-
-#     print(Student.list_students())
-#     student1.register_borrowed_books([{"book_id": 101, "due_date": date(2024, 6, 10)}])
-#     student2.register_borrowed_books([{"book_id": 102, "due_date": date(2024, 6, 5)}])
-
-#     print(student1.list_borrowed_books())
-#     print(student1.student_details())
-#     print(Student.total_students())
-
-#     print(Student.list_borrowed_books_by_id(1))
-#     print(Student.check_overdue_books_by_id(2))
-
-#     student2.register_returned_books([{"book_id": 102, "due_date": date(2024, 6, 5)}])
-#     print(student2.list_borrowed_books())
-
-#     student1.cancel_book_reservation(101)
-#     student1.send_reminders()
-
-#     student1.block_student()
-#     print(student1.check_blocked_status())
-#     student1.unblock_student()
-#     print(student1.check_blocked_status())
-
-#     print(Student.total_overdue_students())
-
-# class Book:
-#     library_db = []
 
 def __init__(self, book_id, title, author, genre, year):
     self.book_id = book_id
@@ -236,40 +203,7 @@ def count_borrowed_books(cls):
     return len(cls.list_borrowed_books())
 
 
-# Example usage
-# if __name__ == "__main__":
-#     book1 = Book(1, "Title1", "Author1", "Genre1", 2020)
-#     book2 = Book(2, "Title2", "Author2", "Genre2", 2021)
-    
-#     book1.add_book()
-#     book2.add_book()
-    
-#     print(Book.list_books())
-#     print(Book.find_book_by_title("Title1"))
-#     print(Book.find_book_by_author("Author2"))
-#     print(Book.list_available_books())
-    
-#     book1.mark_as_borrowed()
-#     print(Book.list_borrowed_books())
-#     print(Book.check_availability(1))
-    
-#     book1.mark_as_returned()
-#     print(Book.check_availability(1))
-    
-#     book1.reserve_book()
-#     print(Book.list_reserved_books())
-    
-#     book1.cancel_reservation()
-#     print(Book.list_reserved_books())
-    
-#     print(Book.count_books())
-#     print(Book.count_available_books())
-#     print(Book.count_borrowed_books())
 
-# from datetime import date, timedelta
-
-# class BorrowRecord:
-#     borrow_db = []
 
 def __init__(self, record_id, book_id, student_id, borrow_date, due_date):
     self.record_id = record_id
@@ -371,30 +305,7 @@ def get_borrowed_book_details_by_id(cls, record_id):
     record = next((record for record in cls.borrow_db if record.record_id == record_id), None)
     return record.get_borrowed_book_details() if record else None
 
-# Example usage
-# if __name__ == "__main__":
-#     borrow1 = BorrowRecord(1, 101, 1001, date(2024, 6, 1), date(2024, 6, 15))
-#     borrow2 = BorrowRecord(2, 102, 1002, date(2024, 6, 5), date(2024, 6, 19))
 
-#     borrow1.add_borrow_record()
-#     borrow2.add_borrow_record()
-
-#     print(BorrowRecord.list_borrow_records())
-#     print(BorrowRecord.search_borrow_record_by_book(101))
-#     print(BorrowRecord.search_borrow_record_by_student(1001))
-#     print(BorrowRecord.total_borrowed_books())
-#     print(BorrowRecord.total_borrowed_books_by_id(1001))
-#     print(BorrowRecord.total_overdue_books())
-
-#     borrow1.update_borrow_record(return_date=date(2024, 6, 16), is_returned=True)
-#     print(borrow1.return_status())
-#     print(borrow1.calculate_fine())
-#     print(BorrowRecord.calculate_fine_by_id(1001))
-#     print(borrow1.get_borrowed_book_details())
-
-# class Librarian:
-#     librarian_db = []
-#     task_db = []
 
 def __init__(self, librarian_id, name):
     self.librarian_id = librarian_id
@@ -481,33 +392,3 @@ def send_notification(self, message):
     # Simulate sending a notification
     print(f"Notification to {self.name}: {message}")
 
-# Example usage
-# if __name__ == "__main__":
-#     librarian1 = Librarian(1, "Alice")
-#     librarian2 = Librarian(2, "Bob")
-
-#     librarian1.add_librarian()
-#     librarian2.add_librarian()
-
-#     print(Librarian.list_librarians())
-#     librarian1.assign_task("Check inventory")
-#     librarian1.assign_task("Order new books")
-    
-#     print(librarian1.list_tasks())
-#     print(librarian1.get_librarian_details())
-#     print(Librarian.total_librarians())
-
-#     librarian1.tasks[0]['is_completed'] = True
-#     print(librarian1.list_pending_tasks())
-#     print(librarian1.list_completed_tasks())
-#     print(librarian1.task_status("Check inventory"))
-
-#     print(Librarian.active_librarians())
-#     librarian1.is_active = False
-#     print(Librarian.inactive_librarians())
-
-#     librarian1.is_blocked = True
-#     print(Librarian.blocked_librarians())
-#     print(librarian1.check_block_status())
-
-#     librarian1.send_notification("Your task is overdue!")
